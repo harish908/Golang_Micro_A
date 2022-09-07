@@ -25,11 +25,11 @@ func registerHTTPServer() {
 	})
 	e.GET("/grpc/health", grpcHealthCheck)
 
-	e.Logger.Fatal(e.Start(":4000"))
+	e.Logger.Fatal(e.Start("0.0.0.0:80"))
 }
 
 func registerGRPCServer() {
-	conn, err := grpc.Dial("127.0.0.1:5001", grpc.WithInsecure())
+	conn, err := grpc.Dial("microservices.service-b:5001", grpc.WithInsecure())
 	if err != nil {
 		fmt.Println("Server error", err)
 	}
